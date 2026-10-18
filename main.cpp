@@ -7,6 +7,7 @@
 #include <set>
 #include <fstream>
 #include <string>
+#include <algorithm>
 using namespace std;
 using namespace std::chrono;
 
@@ -17,9 +18,6 @@ int main() {
     list<string> l;
     set<string> s;
 
-    
-
-    // measure
     // file input
     ifstream fin;
     fin.open("codes.txt");
@@ -57,18 +55,41 @@ int main() {
         end = high_resolution_clock::now();
         // Calculate duration
         auto set_read = duration_cast<nanoseconds>(end - start);
+        
+        //SORTING
+        // vector:
+        // Start timing
+        start = high_resolution_clock::now();
+        sort(v.begin(), v.end());
+        // End timing
+        end = high_resolution_clock::now();
+        // Calculate duration
+        auto vec_sort = duration_cast<nanoseconds>(end - start);
+
+        // list:
+        // Start timing
+        start = high_resolution_clock::now();
+        l.sort();
+        // End timing
+        end = high_resolution_clock::now();
+        // Calculate duration
+        auto lst_sort = duration_cast<nanoseconds>(end - start);
+        
+        // set:
+        // the set's value is -1 since a set is already sorted.
+        auto set_sort = -1;
+        
+        
+        
+        
+        
+        // Output the duration in nanoseconds
+        cout << "Time taken: " << duration.count() << " nanoseconds\n";
+
 
         fin.close();
     } else
         cout << "File not found.\n";
-
-    
-
-    
-    
-    
-    // Output the duration in nanoseconds
-    cout << "Time taken: " << duration.count() << " nanoseconds\n";
 
     return 0;
 }
