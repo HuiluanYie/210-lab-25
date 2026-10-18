@@ -120,9 +120,48 @@ int main() {
         // End timing
         end = high_resolution_clock::now();
         // Calculate duration
+        auto set_insert = duration_cast<nanoseconds>(end - start);
+        
+        //DELETING
+        // vector:
+        // Start timing
+        start = high_resolution_clock::now();
+        v.del
+        // End timing
+        end = high_resolution_clock::now();
+        // Calculate duration
+        auto vec_insert = duration_cast<nanoseconds>(end - start);
+
+        // list:
+        l_it = l.begin();
+        // make the iterater point to the middle
+        for (int i = 0; i <= l.size() / 2; i++)
+        {
+            l_it++;
+        }
+        // Start timing
+        start = high_resolution_clock::now();
+        
+        // End timing
+        end = high_resolution_clock::now();
+        // Calculate duration
         auto lst_insert = duration_cast<nanoseconds>(end - start);
         
+        // set:
+        auto s_it = s.begin();
+        // make the iterater point to the middle
+        for (int i = 0; i <= s.size() / 2; i++)
+        {
+            s_it++;
+        }
+        // Start timing
+        start = high_resolution_clock::now();
         
+        // End timing
+        end = high_resolution_clock::now();
+        // Calculate duration
+        auto set_insert = duration_cast<nanoseconds>(end - start);
+
 
 
         
