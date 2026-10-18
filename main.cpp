@@ -22,11 +22,12 @@ int main() {
     list<string> l;
     set<string> s;
 
+    cout << setw(W) << "Operations" << setw(W) << "Vector" << setw(W) << "List" << setw(W) << "Set" << endl;
+    cout << setw(W) << "READING";
     //READING
     // file input
     ifstream fin;
     fin.open("codes.txt");
-    
     // vector:
     if (fin.good()) {
         // Start timing
@@ -38,7 +39,7 @@ int main() {
         auto end = high_resolution_clock::now();
         // Calculate duration
         auto vec_read = duration_cast<nanoseconds>(end - start);
-
+        cout << setw(W) << vec_read.count();
         fin.close();
     } 
     else
@@ -48,6 +49,7 @@ int main() {
     }
         
     // list:
+    fin.open("codes.txt");
     if (fin.good())
     {
         // Start timing
@@ -59,6 +61,7 @@ int main() {
         auto end = high_resolution_clock::now();
         // Calculate duration
         auto lst_read = duration_cast<nanoseconds>(end - start);
+        cout << setw(W) << lst_read.count();
         fin.close();
     } 
     else
@@ -68,6 +71,7 @@ int main() {
     }
 
     // set:
+    fin.open("codes.txt");
     if (fin.good())
     {
         // Start timing
@@ -79,6 +83,8 @@ int main() {
         auto end = high_resolution_clock::now();
         // Calculate duration
         auto set_read = duration_cast<nanoseconds>(end - start);
+        cout << setw(W) << set_read.count() << endl;
+        fin.close();
     } 
     else
     {
@@ -191,8 +197,6 @@ int main() {
     auto set_del = duration_cast<nanoseconds>(end - start);
 
     // Output the table of duration in nanoseconds
-    cout << setw(W) << "Operations" << setw(W) << "Vector" << setw(W) << "List" << setw(W) << "Set\n";
-    cout << setw(W) << "READING" << setw(W) << vec_read.count() << setw(W) << lst_read.count() << setw(W) << set_read.count() << endl;
     cout << setw(W) << "SORTING" << setw(W) << vec_sort.count() << setw(W) << lst_sort.count() << setw(W) << set_sort << endl;
     cout << setw(W) << "INSERTING" << setw(W) << vec_insert.count() << setw(W) << lst_insert.count() << setw(W) << set_insert.count() << endl;
     cout << setw(W) << "DELETING" << setw(W) << vec_del.count() << setw(W) << lst_del.count() << setw(W) << set_del.count() << endl;
