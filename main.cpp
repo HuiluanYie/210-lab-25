@@ -12,7 +12,7 @@
 using namespace std;
 using namespace std::chrono;
 
-const string TESTCODE = "6vHBe9^e";
+const string TESTCODE = "TESTCODE";
 const int W = 10;
 
 int main() {
@@ -22,12 +22,13 @@ int main() {
     list<string> l;
     set<string> s;
 
+    //READING
     // file input
     ifstream fin;
     fin.open("codes.txt");
+    
+    // vector:
     if (fin.good()) {
-        //READING
-        // vector:
         // Start timing
         auto start = high_resolution_clock::now();
         while (getline(fin, t)) {
@@ -38,142 +39,164 @@ int main() {
         // Calculate duration
         auto vec_read = duration_cast<nanoseconds>(end - start);
 
-        // list:
+        fin.close();
+    } 
+    else
+    {
+        cout << "File not found.\n";
+        return 1;
+    }
+        
+    // list:
+    if (fin.good())
+    {
         // Start timing
-        start = high_resolution_clock::now();
+        auto start = high_resolution_clock::now();
         while (getline(fin, t)) {
             l.push_back(t);
         }
         // End timing
-        end = high_resolution_clock::now();
+        auto end = high_resolution_clock::now();
         // Calculate duration
         auto lst_read = duration_cast<nanoseconds>(end - start);
+        fin.close();
+    } 
+    else
+    {
+        cout << "File not found.\n";
+        return 1;
+    }
 
-        // set:
+    // set:
+    if (fin.good())
+    {
         // Start timing
-        start = high_resolution_clock::now();
+        auto start = high_resolution_clock::now();
         while (getline(fin, t)) {
             s.insert(t);
         }
         // End timing
-        end = high_resolution_clock::now();
+        auto end = high_resolution_clock::now();
         // Calculate duration
         auto set_read = duration_cast<nanoseconds>(end - start);
-        
-        //SORTING
-        // vector:
-        // Start timing
-        start = high_resolution_clock::now();
-        sort(v.begin(), v.end());
-        // End timing
-        end = high_resolution_clock::now();
-        // Calculate duration
-        auto vec_sort = duration_cast<nanoseconds>(end - start);
-
-        // list:
-        // Start timing
-        start = high_resolution_clock::now();
-        l.sort();
-        // End timing
-        end = high_resolution_clock::now();
-        // Calculate duration
-        auto lst_sort = duration_cast<nanoseconds>(end - start);
-        
-        // set:
-        // the set's value is -1 since a set is already sorted.
-        auto set_sort = -1;
-
-
-        //INSERTING
-        // vector:
-        auto v_it = v.begin();
-        // make the iterater point to the middle
-        for (int i = 0; i <= v.size() / 2; i++)
-        {
-            v_it++;
-        }
-        // Start timing
-        start = high_resolution_clock::now();
-        v.insert(v_it, TESTCODE);
-        // End timing
-        end = high_resolution_clock::now();
-        // Calculate duration
-        auto vec_insert = duration_cast<nanoseconds>(end - start);
-
-        // list:
-        auto l_it = l.begin();
-        // make the iterater point to the middle
-        for (int i = 0; i <= l.size() / 2; i++)
-        {
-            l_it++;
-        }
-        // Start timing
-        start = high_resolution_clock::now();
-        l.insert(l_it, t);
-        // End timing
-        end = high_resolution_clock::now();
-        // Calculate duration
-        auto lst_insert = duration_cast<nanoseconds>(end - start);
-        
-        // set:
-        // Start timing
-        start = high_resolution_clock::now();
-        s.insert(t); // into the set
-        // End timing
-        end = high_resolution_clock::now();
-        // Calculate duration
-        auto set_insert = duration_cast<nanoseconds>(end - start);
-        
-        //DELETING
-        // vector:
-        // Start timing
-        start = high_resolution_clock::now();
-        v.erase(v.begin() + v.size() / 2);
-        // End timing
-        end = high_resolution_clock::now();
-        // Calculate duration
-        auto vec_del = duration_cast<nanoseconds>(end - start);
-
-        // list:
-        l_it = l.begin();
-        // make the iterater point to the middle
-        for (int i = 0; i <= l.size() / 2; i++)
-        {
-            l_it++;
-        }
-        // Start timing
-        start = high_resolution_clock::now();
-        l.erase(l_it);
-        // End timing
-        end = high_resolution_clock::now();
-        // Calculate duration
-        auto lst_del = duration_cast<nanoseconds>(end - start);
-        
-        // set:
-        auto s_it = s.begin();
-        // make the iterater point to the middle
-        for (int i = 0; i <= s.size() / 2; i++)
-        {
-            s_it++;
-        }
-        // Start timing
-        start = high_resolution_clock::now();
-        s.erase(s_it);
-        // End timing
-        end = high_resolution_clock::now();
-        // Calculate duration
-        auto set_del = duration_cast<nanoseconds>(end - start);
-
-        // Output the table of duration in nanoseconds
-        cout << setw(W) << "Operations" << setw(W) << "Vector" << setw(W) << "List" << setw(W) << "Set\n";
-        cout << setw(W) << "READING" << setw(W) << vec_read.count() << setw(W) << lst_read.count() << setw(W) << set_read.count() << endl;
-        cout << setw(W) << "SORTING" << setw(W) << vec_sort.count() << setw(W) << lst_sort.count() << setw(W) << set_sort << endl;
-        cout << setw(W) << "INSERTING" << setw(W) << vec_insert.count() << setw(W) << lst_insert.count() << setw(W) << set_insert.count() << endl;
-        cout << setw(W) << "DELETING" << setw(W) << vec_del.count() << setw(W) << lst_del.count() << setw(W) << set_del.count() << endl;
-
-        fin.close();
-    } else
+    } 
+    else
+    {
         cout << "File not found.\n";
+        return 1;
+    }
+        
+    //SORTING
+    // vector:
+    // Start timing
+    auto start = high_resolution_clock::now();
+    sort(v.begin(), v.end());
+    // End timing
+    auto end = high_resolution_clock::now();
+    // Calculate duration
+    auto vec_sort = duration_cast<nanoseconds>(end - start);
+
+    // list:
+    // Start timing
+    start = high_resolution_clock::now();
+    l.sort();
+    // End timing
+    end = high_resolution_clock::now();
+    // Calculate duration
+    auto lst_sort = duration_cast<nanoseconds>(end - start);
+    
+    // set:
+    // the set's value is -1 since a set is already sorted.
+    auto set_sort = -1;
+
+
+    //INSERTING
+    // vector:
+    auto v_it = v.begin();
+    // make the iterater point to the middle
+    for (int i = 0; i <= v.size() / 2; i++)
+    {
+        v_it++;
+    }
+    // Start timing
+    start = high_resolution_clock::now();
+    v.insert(v_it, TESTCODE);
+    // End timing
+    end = high_resolution_clock::now();
+    // Calculate duration
+    auto vec_insert = duration_cast<nanoseconds>(end - start);
+
+    // list:
+    auto l_it = l.begin();
+    // make the iterater point to the middle
+    for (int i = 0; i <= l.size() / 2; i++)
+    {
+        l_it++;
+    }
+    // Start timing
+    start = high_resolution_clock::now();
+    l.insert(l_it, TESTCODE);
+    // End timing
+    end = high_resolution_clock::now();
+    // Calculate duration
+    auto lst_insert = duration_cast<nanoseconds>(end - start);
+    
+    // set:
+    // Start timing
+    start = high_resolution_clock::now();
+    s.insert(TESTCODE); // into the set
+    // End timing
+    end = high_resolution_clock::now();
+    // Calculate duration
+    auto set_insert = duration_cast<nanoseconds>(end - start);
+    
+    //DELETING
+    // vector:
+    // Start timing
+    start = high_resolution_clock::now();
+    v.erase(v.begin() + v.size() / 2);
+    // End timing
+    end = high_resolution_clock::now();
+    // Calculate duration
+    auto vec_del = duration_cast<nanoseconds>(end - start);
+
+    // list:
+    l_it = l.begin();
+    // make the iterater point to the middle
+    for (int i = 0; i <= l.size() / 2; i++)
+    {
+        l_it++;
+    }
+    // Start timing
+    start = high_resolution_clock::now();
+    l.erase(l_it);
+    // End timing
+    end = high_resolution_clock::now();
+    // Calculate duration
+    auto lst_del = duration_cast<nanoseconds>(end - start);
+    
+    // set:
+    auto s_it = s.begin();
+    // make the iterater point to the middle
+    for (int i = 0; i <= s.size() / 2; i++)
+    {
+        s_it++;
+    }
+    // Start timing
+    start = high_resolution_clock::now();
+    s.erase(s_it);
+    // End timing
+    end = high_resolution_clock::now();
+    // Calculate duration
+    auto set_del = duration_cast<nanoseconds>(end - start);
+
+    // Output the table of duration in nanoseconds
+    cout << setw(W) << "Operations" << setw(W) << "Vector" << setw(W) << "List" << setw(W) << "Set\n";
+    cout << setw(W) << "READING" << setw(W) << vec_read.count() << setw(W) << lst_read.count() << setw(W) << set_read.count() << endl;
+    cout << setw(W) << "SORTING" << setw(W) << vec_sort.count() << setw(W) << lst_sort.count() << setw(W) << set_sort << endl;
+    cout << setw(W) << "INSERTING" << setw(W) << vec_insert.count() << setw(W) << lst_insert.count() << setw(W) << set_insert.count() << endl;
+    cout << setw(W) << "DELETING" << setw(W) << vec_del.count() << setw(W) << lst_del.count() << setw(W) << set_del.count() << endl;
+
 
     return 0;
 }
