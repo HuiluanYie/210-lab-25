@@ -1,6 +1,7 @@
 // COMSC-210 | Lab 25 | Huiluan Yie
 
 #include <iostream>
+#include <iomanip>
 #include <chrono>
 #include <vector>
 #include <list>
@@ -12,6 +13,7 @@ using namespace std;
 using namespace std::chrono;
 
 const string TESTCODE = "6vHBe9^e";
+const int W = 10;
 
 int main() {
     // declaration
@@ -126,7 +128,7 @@ int main() {
         // vector:
         // Start timing
         start = high_resolution_clock::now();
-        v.del
+        v.erase(v.begin() + v.size() / 2);
         // End timing
         end = high_resolution_clock::now();
         // Calculate duration
@@ -141,7 +143,7 @@ int main() {
         }
         // Start timing
         start = high_resolution_clock::now();
-        
+        l.erase(l_it);
         // End timing
         end = high_resolution_clock::now();
         // Calculate duration
@@ -156,18 +158,17 @@ int main() {
         }
         // Start timing
         start = high_resolution_clock::now();
-        
+        s.erase(s_it);
         // End timing
         end = high_resolution_clock::now();
         // Calculate duration
         auto set_insert = duration_cast<nanoseconds>(end - start);
 
 
-
         
         
         // Output the duration in nanoseconds
-        cout << "Time taken: " << duration.count() << " nanoseconds\n";
+        
 
 
         fin.close();
