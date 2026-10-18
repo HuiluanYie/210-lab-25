@@ -6,27 +6,63 @@
 #include <list>
 #include <set>
 #include <fstream>
+#include <string>
 using namespace std;
 using namespace std::chrono;
 
 int main() {
-    // Start timing
-    auto start = high_resolution_clock::now();
+    // declaration
+    string t;
+    vector<string> v;
+    list<string> l;
+    set<string> s;
+
+    
 
     // measure
     // file input
     ifstream fin;
-    fin.open("210-lab-15-movie.txt");
+    fin.open("codes.txt");
     if (fin.good()) {
-        
-    fin.close();
+        //READING
+        // vector:
+        // Start timing
+        auto start = high_resolution_clock::now();
+        while (getline(fin, t)) {
+            v.push_back(t);
+        }
+        // End timing
+        auto end = high_resolution_clock::now();
+        // Calculate duration
+        auto vec_read = duration_cast<nanoseconds>(end - start);
+
+        // list:
+        // Start timing
+        start = high_resolution_clock::now();
+        while (getline(fin, t)) {
+            l.push_back(t);
+        }
+        // End timing
+        end = high_resolution_clock::now();
+        // Calculate duration
+        auto lst_read = duration_cast<nanoseconds>(end - start);
+
+        // set:
+        // Start timing
+        start = high_resolution_clock::now();
+        while (getline(fin, t)) {
+            s.insert(t);
+        }
+        // End timing
+        end = high_resolution_clock::now();
+        // Calculate duration
+        auto set_read = duration_cast<nanoseconds>(end - start);
+
+        fin.close();
     } else
         cout << "File not found.\n";
 
-    // End timing
-    auto end = high_resolution_clock::now();
-    // Calculate duration
-    auto duration = duration_cast<nanoseconds>(end - start);
+    
 
     
     
