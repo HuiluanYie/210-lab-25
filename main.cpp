@@ -118,14 +118,14 @@ int main() {
 
     //INSERTING
     // vector:
+    // Start timing
+    start = high_resolution_clock::now();
     auto v_it = v.begin();
     // make the iterater point to the middle
     for (int i = 0; i <= v.size() / 2; i++)
     {
         v_it++;
     }
-    // Start timing
-    start = high_resolution_clock::now();
     v.insert(v_it, TESTCODE);
     // End timing
     end = high_resolution_clock::now();
@@ -133,14 +133,14 @@ int main() {
     auto vec_insert = duration_cast<nanoseconds>(end - start);
 
     // list:
+    // Start timing
+    start = high_resolution_clock::now();
     auto l_it = l.begin();
     // make the iterater point to the middle
     for (int i = 0; i <= l.size() / 2; i++)
     {
         l_it++;
     }
-    // Start timing
-    start = high_resolution_clock::now();
     l.insert(l_it, TESTCODE);
     // End timing
     end = high_resolution_clock::now();
@@ -167,14 +167,14 @@ int main() {
     auto vec_del = duration_cast<nanoseconds>(end - start);
 
     // list:
+    // Start timing
+    start = high_resolution_clock::now();
     l_it = l.begin();
     // make the iterater point to the middle
     for (int i = 0; i <= l.size() / 2; i++)
     {
         l_it++;
     }
-    // Start timing
-    start = high_resolution_clock::now();
     l.erase(l_it);
     // End timing
     end = high_resolution_clock::now();
@@ -182,14 +182,14 @@ int main() {
     auto lst_del = duration_cast<nanoseconds>(end - start);
     
     // set:
+    // Start timing
+    start = high_resolution_clock::now();
     auto s_it = s.begin();
     // make the iterater point to the middle
     for (int i = 0; i <= s.size() / 2; i++)
     {
         s_it++;
     }
-    // Start timing
-    start = high_resolution_clock::now();
     s.erase(s_it);
     // End timing
     end = high_resolution_clock::now();
@@ -200,7 +200,6 @@ int main() {
     cout << setw(W) << "SORTING" << setw(W) << vec_sort.count() << setw(W) << lst_sort.count() << setw(W) << set_sort << endl;
     cout << setw(W) << "INSERTING" << setw(W) << vec_insert.count() << setw(W) << lst_insert.count() << setw(W) << set_insert.count() << endl;
     cout << setw(W) << "DELETING" << setw(W) << vec_del.count() << setw(W) << lst_del.count() << setw(W) << set_del.count() << endl;
-
 
     return 0;
 }
