@@ -11,6 +11,8 @@
 using namespace std;
 using namespace std::chrono;
 
+const string TESTCODE = "6vHBe9^e";
+
 int main() {
     // declaration
     string t;
@@ -78,7 +80,47 @@ int main() {
         // set:
         // the set's value is -1 since a set is already sorted.
         auto set_sort = -1;
+
+
+        //INSERTING
+        // vector:
+        auto v_it = v.begin();
+        // make the iterater point to the middle
+        for (int i = 0; i < v.size() / 2; i++)
+        {
+            v_it++;
+        }
+        // Start timing
+        start = high_resolution_clock::now();
+        v.insert(v_it, TESTCODE);
+        // End timing
+        end = high_resolution_clock::now();
+        // Calculate duration
+        auto vec_insert = duration_cast<nanoseconds>(end - start);
+
+        // list:
+        auto l_it = l.begin();
+        // make the iterater point to the middle
+        for (int i = 0; i < l.size() / 2; i++)
+        {
+            l_it++;
+        }
+        // Start timing
+        start = high_resolution_clock::now();
+        l.insert(l_it, t);
+        // End timing
+        end = high_resolution_clock::now();
+        // Calculate duration
+        auto lst_insert = duration_cast<nanoseconds>(end - start);
         
+        // set:
+        // Start timing
+        start = high_resolution_clock::now();
+        
+        // End timing
+        end = high_resolution_clock::now();
+        // Calculate duration
+        auto lst_insert = duration_cast<nanoseconds>(end - start);
         
         
         
