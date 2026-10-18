@@ -86,7 +86,7 @@ int main() {
         // vector:
         auto v_it = v.begin();
         // make the iterater point to the middle
-        for (int i = 0; i < v.size() / 2; i++)
+        for (int i = 0; i <= v.size() / 2; i++)
         {
             v_it++;
         }
@@ -101,7 +101,7 @@ int main() {
         // list:
         auto l_it = l.begin();
         // make the iterater point to the middle
-        for (int i = 0; i < l.size() / 2; i++)
+        for (int i = 0; i <= l.size() / 2; i++)
         {
             l_it++;
         }
@@ -116,13 +116,15 @@ int main() {
         // set:
         // Start timing
         start = high_resolution_clock::now();
-        
+        s.insert(t); // into the set
         // End timing
         end = high_resolution_clock::now();
         // Calculate duration
         auto lst_insert = duration_cast<nanoseconds>(end - start);
         
         
+
+
         
         
         // Output the duration in nanoseconds
